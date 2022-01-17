@@ -1,3 +1,5 @@
+const rowsPerPage = 10;
+
 const data = [
     {
         id: 1,
@@ -179,6 +181,25 @@ const data = [
         email: 'bessie.cooper@example.com',
         title: 'Scrum Master'
     },
-]
+];
 
-export {data};
+const headersArray = [
+  {
+    header: 'ID',
+    class: 'header__id'
+  },
+  {
+    header: 'Name',
+    class: 'header__name'
+  },
+  {
+    header: 'Email Adress',
+    class: 'header__email'
+  },
+  {
+    header: 'Job Title',
+    class: 'header__title'
+  }
+];
+
+export {data, headersArray, rowsPerPage};

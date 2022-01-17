@@ -67,7 +67,6 @@ td {
 input[type="text"],
 input[type="email"] {
   background: none;
-  padding: 0 16px;
   height: 55px;
   border-radius: 4px;
   border: none;
