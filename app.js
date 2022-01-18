@@ -59,9 +59,31 @@ const setTablePage = (array, startIndex, endIndex) => {
 
 setTablePage(data, 0, rowsPerPage);
 
-// const sortArray = (array, field) => {
-//   array.sort((a, b) => a[field] - b[field]);
-// };
+const byKey = (key, caseName) => {
+  switch (caseName) {
+    case 'ascending':
+      return (a, b) => a[key] > b[key] ? 1 : -1;
+    case 'descending':
+      return (a, b) => a[key] > b[key] ? -1 : 1;
+  }
+}
+
+const sortSwitcher = (evt, sortName) => {
+  switch (evt.path[3].className) {
+    case 'header__id':
+      data.sort(byKey('id', sortName));
+      break;
+    case 'header__name':
+      data.sort(byKey('name', sortName));
+      break;
+    case 'header__email':
+      data.sort(byKey('email', sortName));
+      break;
+    case 'header__title':
+      data.sort(byKey('title', sortName));
+      break;
+  }
+}
 
 const sortButtons = thead.querySelectorAll('.sort');
 
@@ -74,13 +96,15 @@ sortButtons.forEach(sortButton => {
     });
 
     switch (evt.target.className.baseVal) {
-      case 'descending':
-        sortButton.classList.add('descending');
-        // sortToggler();
-        break;
       case 'ascending':
         sortButton.classList.add('ascending');
-        // sortToggler();
+        sortSwitcher(evt, 'ascending');
+        setTablePage(data, 0, rowsPerPage);
+        break;
+      case 'descending':
+        sortButton.classList.add('descending');
+        sortSwitcher(evt, 'descending');
+        setTablePage(data, 0, rowsPerPage);
         break;
     }
   });
